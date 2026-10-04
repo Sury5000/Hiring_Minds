@@ -1,0 +1,81 @@
+My recommendation is a hybrid. Use a few videos only for scene-like moments, such as the hero power-on, one transition and the scrolled first day story, where a full frame feels cinematic. Everywhere else, use cutout stills of the mascot with no background and move them with code. The mascot is a simple rounded shape, so tilting, hopping, squashing and looking around are easy to do with GSAP. Code-driven stills are what let it sit on a card edge, peek from behind a panel, or tap a button.
+
+That means most of the clips in the pack (the C story clips, D employee clips and B cameos) become optional. The stills do more work for the page
+
+The look grid (A2) lets the eyes follow the cursor.
+The expression sheet (A1) lets the face change by section.
+The four variants (A4) fill the candidates and pricing sections.
+
+To make the stills cutout-ready, generate them on flat pure green (
+#00FF00) with no floor and no reflection, then key the green out. If you upload those stills to me, I can key them into transparent PNG or WebP files and build the asset set.
+
+Storytelling the mascot is your first hire
+Hero it floats in, lands, winks and powers on (your existing video), and the headline appears as the screen lights.
+Post the role a small cutout mascot sits at the edge of the job-post card, looking up at it.
+Meet the candidates four tinted mascots, each peeking from behind its own profile panel. They turn toward the cursor and tilt on hover.
+Interview it sits beside the demo window and changes expression thinking while the demo runs, happy when you click Approve.
+First day this is the one cinematic scene. The video scrubs with scroll while the clock moves through the day, and the mascot badge swaps for each employee.
+Onboarding app cubes made in CSS orbit a cutout mascot and snap into a ring.
+Review it looks proud as the bars grow.
+Offer each mascot stands on its offer card, and clicking Accept offer makes it celebrate with a bounce and confetti.
+Footer it falls asleep, and wakes with a stretch when you scroll to it or hover.
+
+I'd also add a small companion mascot pinned to a corner of the screen. It changes expression as you scroll, and tapping it opens the Start hiring call to action. It costs almost nothing, it works on phones, and it keeps the character with the visitor through the whole page.
+
+Phones
+
+Yes, the site must work on phones, and the mascot plan needs to change there
+
+Layout the mascot goes above the text at about 60 to 70 percent of the screen width, in a single column.
+Hero video play it once, muted and inline. Ideally regenerate it at 916, or crop it so the mascot stays centred. Keep the file small, around 1 MB.
+No scroll-scrubbed video on phones. It stutters on iOS and wastes data. Show a still and animate with code instead.
+No cursor tricks. Replace hover with tap reactions, such as tapping the mascot to wink, and scroll-driven expression changes.
+Weight load stills as WebP with transparency, lazy-load everything below the first screen, and keep the first load under about 3 MB. No more than one video playing at a time.
+Reduced motion show the lit still and skip the animation.
+
+
+
+I've built the outside-work pack as EXTERNAL_WORK_PACK.zip. Everything you need to make or decide outside is in it, with one text file per folder and reference images and prompts attached.
+
+Start with 00_START_HERE.txt. It has the priority order, the file-naming rules and how to send finished work back.
+
+Folder	What you do
+01_FLOW_regenerate_videos	Make 4 required clips in Flow, plus 3 optional idle loops.
+02_FLOW_new_stills_green_screen	Make 8 required stills on flat green (4 optional more).
+03_CUTOUT_tool_work	Cut out 5 stills with remove.bg or Photoshop. This is an alternative route to folder 02.
+04_BRAND_AND_LEGAL	Trademark search, domain, asset rights, policies, WhatsAppMetaGoogle API approvals.
+05_CONTENT_NEEDED	Prices, real agent capabilities, testimonials, screenshots, company details.
+06_CONNECT_AGENTS_INFO_NEEDED	The API shape the site expects, 12 questions for you, and HostingerKVM 2 notes.
+
+Folder 01. Two of the clips replace the watermarked ones (Ivy's chat bubbles and the footer wake-up), and two are phone-format 916 versions of the hero intro and idle loop. The prompts tell Flow to avoid watermarks and to keep the mascot's face consistent. I tried removing the watermarks myself, but the filter left a faint smear, so regenerating is cleaner.
+
+Folder 02. The stills are the tinted mascots for Ivy, Remy, Wren and Otto without their props, a base lit and a dark-screen version, and corrected surprised and proud faces. Flat green makes them easy for me to cut out cleanly, because the dark-background cutouts leave fringes. I rebuild the bubbles, bars, ring and panels in code, which is why the stills need to be prop-free.
+
+Folder 06. This is what makes the site ready to connect. The site will talk to one gateway on a subdomain such as api.hiringminds.tech, not directly to n8n, Hermes or Paperclip. That keeps secrets out of the browser and avoids cross-origin problems. The gateway needs a few endpoints for agent list and status, chat (streamed or not), tasks, approvals and the waitlist. Until you connect them, the site runs in demo mode with fake data. Connecting an agent later is then a config change, not a rebuild. I don't know the APIs of Hermes or Paperclip, so the contract is generic and the questions ask how each one fits your design.
+
+I also fixed two mistakes in the earlier sorted zip, which is attached again and updated. The watermark coordinates in the notes were wrong (the sparkle is at about x 1690–1760, y 853–921 on the 1080p frames), and I removed the suggestion to use ffmpeg's delogo filter for it, since my test showed it doesn't work cleanly.
+
+Finish 06 first, since it takes about ten minutes and unblocks my work. Then send me the Flow clips and stills as a DELIVERY zip, and I'll build the site with everything wired in.
+
+External work pack
+ZIP 
+Ai agent designs sorted
+ZIP 
+
+why you want 6th first and how to do it cant we do it later because we are not going to connect right away just want to make it ready to connect when we do
+
+You're right, and I overstated it. Folder 06 isn't needed first. I don't need your answers to build the site, because I'll build it with a generic connection layer that runs on fake data in demo mode. Your answers would only help me adjust that layer to your real tools, and they can wait until you're ready to connect.
+
+I've updated the pack. Folder 06 is now step 5 and marked later, not needed to build the site. The updated zip is attached.
+
+What to do now
+
+Folder 01 make the 4 Flow videos.
+Folder 02 make the green-screen stills. Or use folder 03 if you'd rather cut out the existing stills with a tool.
+Folder 05 fill in prices and content when you can. Placeholders work until then.
+
+When you do get to folder 06, it's mostly plain questions about how your agents will work, for example whether each agent has its own endpoint, how requests are authenticated, and whether customers log in. You don't need to know the technical answers yet, and not decided is fine for any of them. The part I'd be careful about is the setup advice the gateway sits between the website and n8n, Hermes or Paperclip, so the website never holds secrets.
+
+One thing from folder 06 does affect the build slightly whether the site goes on your Hostinger web hosting or on the KVM 2 VPS. I'll assume static files, which work on either, so you don't need to decide now.
+
+If you'd like, I can start building the site now with the assets I already have and drop in the new clips and stills when they arrive. Should I start
